@@ -1,5 +1,7 @@
 name: Checks run on pull request
 
+# see merge-queue.yml for more information on why we need two separate workflows
+
 on:
   pull_request:
 

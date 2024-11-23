@@ -1,5 +1,9 @@
 name: Checks run in merge queue
 
+# Reference: https://stackoverflow.com/questions/76655935/when-does-a-github-workflow-trigger-for-merge-group-and-is-it-restricted-by-bran
+# Particularly the answer by @kojoru
+
+
 on:
   merge_group:
 
