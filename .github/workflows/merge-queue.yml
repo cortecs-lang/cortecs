@@ -1,16 +1,11 @@
-name: Run Required Checks
-run-name: PR Checks for ${{ github.ref_name }}
+name: Checks run in merge queue
 
-# Trigger jobs whenever Trunk Merge tests a PR using a `trunk-merge/` branch
 on:
-  push:
-    branches:
-      - trunk-merge/**
+  merge_group:
 
 jobs:
-  unit_tests:
+  run-ci:
     runs-on: ubuntu-latest
-    name: All Unit Tests
     steps:
       - name: Checkout
         uses: actions/checkout@v4

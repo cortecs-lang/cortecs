@@ -1,0 +1,12 @@
+name: Checks run on pull request
+
+on:
+  pull_request:
+
+jobs:
+  run-ci:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - run: sleep 5
