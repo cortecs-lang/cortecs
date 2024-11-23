@@ -3,6 +3,18 @@ name: Checks run in merge queue
 # Reference: https://stackoverflow.com/questions/76655935/when-does-a-github-workflow-trigger-for-merge-group-and-is-it-restricted-by-bran
 # Particularly the answer by @kojoru
 
+# when adding new checks:
+# 1. Add the new job to both merge-queue.yml and pull-request.yml
+#   1.1. The job name should be the same in both files
+#   1.2. It needs to exist in both files, so even if it's a large test that we dont want to
+#        run on every PR event, still add it to pull-request.yml but make it a no-op job.
+# 2. Add the new job to required status checks
+#   2.1. Go to Settings -> Rules -> Rulesets -> Merge Queue -> Require status checks to pass
+#   2.2. + Add checks
+#   2.3. add the new job name: the id that comes under jobs
+#     2.3.1. it might not show up as a github action. it might just show up as "Any source"
+#     2.3.2. adding a name parameter to the job seems to mess this up.
+#            too lazy to figure out why, so just leave it out.
 
 on:
   merge_group:
@@ -34,7 +46,7 @@ jobs:
           files: ${{ env.COVERAGE_DAT }}
           token: ${{ secrets.CODECOV_TOKEN }}
           verbose: true
-          # coverage gets uploaded from the trunk merge staging branch
+          # coverage gets uploaded from the github merge queue staging branch
           # override and say coverage is from main
           override_branch: main
           # TODO coverage isnt reported for the right commits
