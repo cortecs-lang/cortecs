@@ -5,6 +5,4 @@
   separateMajorMinor: false,
   dependencyDashboard: true,
   automerge: true,
-  automergeType: 'pr-comment',
-  automergeComment: '/trunk merge',
 }
