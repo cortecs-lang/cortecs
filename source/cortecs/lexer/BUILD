@@ -8,9 +8,6 @@ cc_library(
     deps = [
         "//source/cortecs/gc",
         "//source/cortecs/string",
-        "@icu//icu4c/source/common:errorcode",
-        "@icu//icu4c/source/common:headers",
-        "@icu//icu4c/source/common:uchar",
-        "@icu//icu4c/source/common:utext",
+        "@icu",
     ],
 )
