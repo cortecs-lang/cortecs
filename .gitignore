@@ -5,3 +5,4 @@ bazelisk*
 compile_commands.json
 genhtml/
 .venv/
+cache-rw-credentials.json

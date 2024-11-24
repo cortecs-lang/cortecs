@@ -1,1 +1,8 @@
 common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+
+# Bazel remote cache
+# reads are public
+# writes are private and handled by CI
+common --remote_cache=https://storage.googleapis.com/cortecs-build-cache
+common --remote_upload_local_results=false
+common:ci --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json
