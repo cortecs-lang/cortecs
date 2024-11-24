@@ -57,7 +57,7 @@ if "Updating module version" not in main.commit.message:
     print(pr_link)
     for line in pr_link.splitlines():
         # Find the line with the PR number
-        if "https://github.com/reutermj/cortecs-c/pull/" in line:
+        if "https://github.com/cortecs-lang/cortecs/pull/" in line:
             numbers = re.findall(r'\d+', line)
             if len(numbers) != 1:
                 print("Found too many numbers in PR line number")
@@ -66,8 +66,8 @@ if "Updating module version" not in main.commit.message:
                 pr_num = numbers[0]
                 print("Found PR number:", pr_num)
                 # Comment on the PR to initiate a merge
-                print("Kicking off trunk merge")
-                subprocess.run(['gh', 'pr', 'comment', pr_num, '--body', '/trunk merge'])
+                print("Kicking off automerge")
+                subprocess.run(['gh', 'pr', 'merge', pr_num, '--merge', '--auto'])
     
     # switch back to main
     main.checkout()
