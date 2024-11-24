@@ -4,6 +4,7 @@ module(name = "cortecs", version = "2024.11.23")
 git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 bazel_dep(name = "rules_cc", version = "0.0.13")
+bazel_dep(name = "rules_foreign_cc", version = "0.12.0")
 
 # git_repository dependencies are auto updated by a github action that
 # * scans for lines that start with git_repository(
@@ -83,12 +84,11 @@ git_override(
     commit = "4f28899228fb3ad0126897876f147ca15026151e",
 )
 
-http_archive(
+git_repository(
     name = "icu",
-    # BUILD files inside icu4c reference //icu4c/ but it unzips into icu/
-    # Configure to replace the folder icu/ with icu4c/
-    strip_prefix = "icu",
-    add_prefix = "icu4c",
-    integrity = "sha256-kw832xpCPD25SC/ceTIkfpp//WMwiVv/QZd/4q+Piho=",
-    urls = ["https://github.com/unicode-org/icu/releases/download/release-75-1/icu4c-75_1-src.zip"],
+    remote = "https://github.com/unicode-org/icu.git",
+    # branch = "main",
+    commit = "2ba362fa3b7cb8b4f4c35b016ec1c490e590b86a",
+    patches = ["//third_party/icu4c:remove_build_files.patch"],
+    build_file="//third_party/icu4c:BUILD",
 )

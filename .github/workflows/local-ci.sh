@@ -7,7 +7,7 @@ rm compile_commands.json
 find source/ -iname '*.h' -o -iname '*.c' -exec clang-format --dry-run --Werror {} \;
 
 # build compile_commands.json
-CC=clang bazel build //...
+CC=clang bazel build //source/...
 CC=clang bazel run @hedron_compile_commands//:refresh_all
 
 # run linter

@@ -30,7 +30,7 @@ jobs:
       - run: find source/ -iname '*.h' -o -iname '*.c' -exec clang-format --dry-run --Werror {} \;
 
       # Make sure it builds under both clang and gcc
-      - run: CC=clang bazel build //...
+      - run: CC=clang bazel build //source/...
       - run: CC=clang bazel run @hedron_compile_commands//:refresh_all # generates the compile_commands.json
       - run: find source/ -type f -iname '*.c' ! -iname '*.template.c' -exec clang-tidy --config-file ./source/.clang-tidy -p ./ {} \;
 
