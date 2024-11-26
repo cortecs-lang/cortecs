@@ -89,6 +89,13 @@ git_repository(
     remote = "https://github.com/unicode-org/icu.git",
     # branch = "main",
     commit = "2ba362fa3b7cb8b4f4c35b016ec1c490e590b86a",
+    # These patches remove the bazel BUILD files from the icu4c tree
+    # Might be a bazel bug. Might be some weird undocumented quirk.
+    # But they cause the directory they're in to not be copied into the sandbox
+    # The build works in a local run but not in a sandboxed run.
+    # If youre ever getting an error where --spawn_strategy=local works here
+    # but not --spawn_strategy=linux_sandbox: check the sandbox files and see if they
+    # match the actual repo. if not, see if the repo has added new BUILD files.
     patches = ["//third_party/icu4c:remove_build_files.patch"],
     build_file="//third_party/icu4c:BUILD",
 )
