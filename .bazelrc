@@ -1,8 +1,35 @@
+# ===================
+# || C Build Flags ||
+# ===================
 common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
 
-# Bazel remote cache
-# reads are public
-# writes are private and handled by CI
+# ====================
+# || Remote Caching ||
+# ====================
+
+# Use a remote cache to improve local build times and CI efficiency.
+# The cache is setup to be publically readable and privatelly writable.
+# CI is responsible for uploading artifacts to the cache for use in local builds.
+
+# Use a google cloud bucket for remote caching; It's supported out of the box.
 common --remote_cache=https://storage.googleapis.com/cortecs-build-cache
+
+# For local builds, only read the cache; Dont attempt to upload artifacts.
+# This is overridden in CI: --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json
 common --remote_upload_local_results=false
-common:ci --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json
+
+# Bazel remote caching considers the PATH environment variable when determining a remote cache hit.
+# If the PATH variable in the CI run is different from your local PATH variable,
+# your local run will fail to hit the remote cache artifacts uploaded by CI.
+# Set the PATH variable to be consistent across all runs
+common --action_env=PATH=/usr/local/bin:/usr/bin:/bin
+
+# ================
+# || Sandboxing ||
+# ================
+
+# By default, Cortecs development is already done in a container.
+# linux-sandbox doesnt appeart to be an available strategy inside a container.
+# Set behavior globally to avoid impacting remote caching performance. 
+common --spawn_strategy=processwrapper-sandbox
+ 
