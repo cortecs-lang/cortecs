@@ -22,7 +22,6 @@ on:
 jobs:
   build-linux-gcc:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v4
