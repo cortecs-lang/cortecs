@@ -8,8 +8,15 @@
         "vscode": {
             // Add the IDs of extensions you want installed when the container is created.
             "extensions": [
+                "bazelbuild.vscode-bazel",
                 "llvm-vs-code-extensions.vscode-clangd",
-                "vadimcn.vscode-lldb"
+                "mhutchie.git-graph",
+                "vadimcn.vscode-lldb",
+                "github.vscode-github-actions",
+                "github.copilot",
+                "github.remotehub",
+                "github.vscode-pull-request-github",
+                "zhaouv.vscode-markdown-everywhere"
             ]
         }
     }
