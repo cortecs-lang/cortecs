@@ -88,7 +88,7 @@ git_repository(
     name = "icu",
     remote = "https://github.com/unicode-org/icu.git",
     # branch = "main",
-    commit = "2ba362fa3b7cb8b4f4c35b016ec1c490e590b86a",
+    commit = "e025466e3ac94bcf4a8062b98b68f4c6b7e00990",
     # These patches remove the bazel BUILD files from the icu4c tree
     # Might be a bazel bug. Might be some weird undocumented quirk.
     # But they cause the directory they're in to not be copied into the sandbox
