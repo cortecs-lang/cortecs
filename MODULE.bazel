@@ -6,6 +6,14 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 bazel_dep(name = "rules_cc", version = "0.0.13")
 bazel_dep(name = "rules_foreign_cc", version = "0.12.0")
 
+bazel_dep(name = "hermetic_cc_toolchain", version = "3.1.1")
+toolchains = use_extension("@hermetic_cc_toolchain//toolchain:ext.bzl", "toolchains")
+use_repo(toolchains, "zig_sdk")
+register_toolchains(
+    "@zig_sdk//toolchain:linux_amd64_gnu.2.31",
+    "@zig_sdk//toolchain:windows_amd64",
+)
+
 # git_repository dependencies are auto updated by a github action that
 # * scans for lines that start with git_repository(
 # * inside it looks for:
@@ -97,5 +105,5 @@ git_repository(
     # but not --spawn_strategy=linux_sandbox: check the sandbox files and see if they
     # match the actual repo. if not, see if the repo has added new BUILD files.
     patches = ["//third_party/icu4c:remove_build_files.patch"],
-    build_file="//third_party/icu4c:BUILD",
+    build_file = "//third_party/icu4c:BUILD",
 )
