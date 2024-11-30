@@ -1,7 +1,17 @@
+common --enable_platform_specific_config
+
 # ===================
 # || C Build Flags ||
 # ===================
 common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+
+# ===========================
+# || Hermetic CC Toolchain ||
+# ===========================
+
+build:linux --sandbox_add_mount_pair=/tmp
+build:macos --sandbox_add_mount_pair=/var/tmp
+build:windows --sandbox_add_mount_pair=C:\Temp
 
 # ====================
 # || Remote Caching ||
