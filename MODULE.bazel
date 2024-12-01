@@ -6,6 +6,15 @@ http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "ht
 bazel_dep(name = "rules_cc", version = "0.0.13")
 bazel_dep(name = "rules_foreign_cc", version = "0.12.0")
 
+bazel_dep(name = "toolchains_llvm", version = "1.2.0")
+llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
+llvm.toolchain(
+    llvm_version = "19.1.0",
+)
+
+use_repo(llvm, "llvm_toolchain")
+register_toolchains("@llvm_toolchain//:all")
+
 # git_repository dependencies are auto updated by a github action that
 # * scans for lines that start with git_repository(
 # * inside it looks for:
@@ -97,5 +106,5 @@ git_repository(
     # but not --spawn_strategy=linux_sandbox: check the sandbox files and see if they
     # match the actual repo. if not, see if the repo has added new BUILD files.
     patches = ["//third_party/icu4c:remove_build_files.patch"],
-    build_file="//third_party/icu4c:BUILD",
+    build_file = "//third_party/icu4c:BUILD",
 )

@@ -10,9 +10,19 @@ filegroup(
 configure_make(
     name = "icu",
     configure_command = "icu4c/source/configure",
-    configure_options = ["--enable-static", "--disable-shared"],
+    configure_options = [
+        "--enable-static",
+        "--disable-shared",
+    ],
     lib_source = ":all_files",
-    out_static_libs = ["libicudata.a", "libicui18n.a", "libicuio.a", "libicutest.a", "libicutu.a", "libicuuc.a"],
-    out_shared_libs = [], #"libicudata.so", "libicui18n.so", "libicuio.so", "libicutest.so", "libicutu.so", "libicuuc.so"
+    out_shared_libs = [],  #"libicudata.so", "libicui18n.so", "libicuio.so", "libicutest.so", "libicutu.so", "libicuuc.so"
+    out_static_libs = [
+        "libicudata.a",
+        "libicui18n.a",
+        "libicuio.a",
+        "libicutest.a",
+        "libicutu.a",
+        "libicuuc.a",
+    ],
     visibility = ["//visibility:public"],
 )

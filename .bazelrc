@@ -8,7 +8,7 @@ common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c+
 # ====================
 
 # Use a remote cache to improve local build times and CI efficiency.
-# The cache is setup to be publically readable and privatelly writable.
+# The cache is setup to be publicly readable and privately writable.
 # CI is responsible for uploading artifacts to the cache for use in local builds.
 
 # Debugging hints:
@@ -17,7 +17,7 @@ common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c+
 # 2) run with `--execution_log_compact_file` on both CI and local build
 #   2.1) CI is configured to upload the log as an artifact and can be downloaded from the workflow run
 # 3) use `bazel-bin/src/tools/execlog/parser` to generate a sorted, human readable log
-# 4) Compare in vscode with right click `selecte for compare` then right click the other `compare with selected`
+# 4) Compare in vscode with right click `select for compare` then right click the other `compare with selected`
 # 5) Look through the diff to figure out what might be causing cache lookup between the two environments to differ.
 
 # Use a google cloud bucket for remote caching; It's supported out of the box.
@@ -40,12 +40,6 @@ common --host_action_env=PATH=/usr/local/bin:/usr/bin:/bin
 # This only allows a minimal set of environment variables to be passed into the build
 common --incompatible_strict_action_env
 
-# ================
-# || Sandboxing ||
-# ================
-
-# By default, Cortecs development is already done in a container.
-# linux-sandbox doesnt appeart to be an available strategy inside a container.
 # Set behavior globally to avoid impacting remote caching performance. 
 common --spawn_strategy=processwrapper-sandbox
  
