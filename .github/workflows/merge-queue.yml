@@ -22,7 +22,6 @@ on:
 jobs:
   build-linux-gcc:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -33,7 +32,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       
-      - run: ./bazel build --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json //source/...
+      - run: bazel build --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json //...
 
   # build-linux-clang:
   #   runs-on: ubuntu-latest
