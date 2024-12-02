@@ -8,6 +8,6 @@ cc_library(
     deps = [
         "//source/cortecs/gc",
         "//source/cortecs/string",
-        "@icu",
+        "@icu4c//:icuuc",
     ],
 )

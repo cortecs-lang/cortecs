@@ -13,6 +13,7 @@
 #include <unicode/urename.h>
 #include <unicode/utext.h>
 #include <unicode/utf16.h>
+#include <unicode/utf8.h>
 #include <unicode/utypes.h>
 
 typedef struct {

@@ -8,7 +8,6 @@ on:
 jobs:
   build-linux-gcc:
     runs-on: ubuntu-latest
-    container: mcr.microsoft.com/devcontainers/base:ubuntu
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -19,7 +18,7 @@ jobs:
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       
-      - run: ./bazel build --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json --execution_log_compact_file=ci.log //source/...
+      - run: bazel build --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json --execution_log_compact_file=ci.log //...
       - uses: actions/upload-artifact@v4
         with:
           name: ci-build-log
