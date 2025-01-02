@@ -11,14 +11,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
-      # Get the credentials to write the bazel cache from secrets
-      - run: 'echo "$GOOGLE_CREDENTIALS" > cache-rw-credentials.json'
-        shell: bash
-        env:
-          GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
       
-      - run: bazel build --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json --execution_log_compact_file=ci.log //...
+      - run: ./bazelw build --execution_log_compact_file=ci.log //...
       - uses: actions/upload-artifact@v4
         with:
           name: ci-build-log
