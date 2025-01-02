@@ -1,7 +1,5 @@
 bazel-*
 .vscode
-buildifier*
-bazelisk*
 compile_commands.json
 genhtml/
 .venv/
