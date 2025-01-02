@@ -1,6 +1,5 @@
 # Components
 
-
 Components are user defined data types that allow the grouping of other data called fields.
 
 ```cortecs
