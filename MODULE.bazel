@@ -1,7 +1,8 @@
 "Contains code related to the Cortecs programming language"
 module(name = "cortecs")
 
-bazel_dep(name = "rules_cc", version = "0.0.13")
+bazel_dep(name = "rules_cc", version = "0.1.0")
+bazel_dep(name = "googletest", version = "1.15.2")
 
 bazel_dep(name = "toolchains_llvm", version = "1.2.0")
 llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
@@ -26,11 +27,11 @@ git_override(
 )
 
 # Usage:
-# bazel build //...
-# bazel run @hedron_compile_commands//:refresh_all
+# ./bazelw build //...
+# ./bazelw run @hedron_compile_commands//:refresh_all
 # Sometimes helpful to clear the bazel cache:
 # bazel clean
-# rm -r $(./bazel info repository_cache)
+# rm -r $(./bazelw info repository_cache)
 # To have renovate update this dependency, this must have a version even though
 # it's not declared in the hedron_compile_commands MODULE.bazel
 bazel_dep(name = "hedron_compile_commands", version = "0.0.0", dev_dependency = True)
