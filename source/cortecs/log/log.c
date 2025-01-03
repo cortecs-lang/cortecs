@@ -7,7 +7,7 @@ void cortecs_finalizer(CN(Cortecs, Log))(void *allocation) {
     fclose(log_stream.log_file);
 }
 
-void CN(Cortecs, Log, init)() {
+void CN(Cortecs, Log, init)(void) {
     cortecs_finalizer_register(CN(Cortecs, Log));
 }
 

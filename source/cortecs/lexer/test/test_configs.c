@@ -51,7 +51,8 @@ static const char lexer_test_name_lookup[] = {
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
     '_',
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+};
 
 static uint32_t lexer_test_name_max_entropy(uint32_t state) {
     if (state == 0) {
@@ -82,7 +83,8 @@ static const char lexer_test_type_lookup[] = {
     'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
     '_',
     'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
-    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'};
+    '0', '1', '2', '3', '4', '5', '6', '7', '8', '9'
+};
 
 static uint32_t lexer_test_type_max_entropy(uint32_t state) {
     if (state == 0) {
@@ -233,7 +235,8 @@ static cortecs_lexer_test_result_t lexer_test_bad_float_next(cortecs_lexer_test_
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        '_'};
+        '_'
+    };
     entropy = entropy % lexer_test_bad_float_max_entropy(state.state);
     switch (state.state) {
         case 0: {
@@ -339,7 +342,8 @@ static cortecs_lexer_test_result_t lexer_test_bad_float_next(cortecs_lexer_test_
             static const char bad_suffix[] = {
                 'a', 'b', 'c', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
                 'A', 'B', 'C', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                '_'};
+                '_'
+            };
             return (cortecs_lexer_test_result_t){
                 .next_char = bad_suffix[entropy],
             };
@@ -372,7 +376,8 @@ static uint32_t lexer_test_int_max_entropy(uint32_t state) {
 static cortecs_lexer_test_result_t lexer_test_int_next(cortecs_lexer_test_state_t state, uint32_t entropy) {
     static const char digits_and_signed_suffixes[] = {
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
-        'b', 'B', 's', 'S', 'l', 'L'};
+        'b', 'B', 's', 'S', 'l', 'L'
+    };
     entropy = entropy % lexer_test_int_max_entropy(state.state);
     switch (state.state) {
         case 0: {
@@ -450,7 +455,8 @@ static cortecs_lexer_test_result_t lexer_test_bad_int_next(cortecs_lexer_test_st
         '0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
         'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z',
         'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-        '_'};
+        '_'
+    };
     switch (state.state) {
         case 0: {
             uint32_t next_state;
@@ -517,7 +523,8 @@ static cortecs_lexer_test_result_t lexer_test_bad_int_next(cortecs_lexer_test_st
             static const char bad_suffix[] = {
                 'a', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'm', 'n', 'o', 'p', 'q', 'r', 't', 'u', 'v', 'w', 'x', 'y', 'z',
                 'A', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'M', 'N', 'O', 'P', 'Q', 'R', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z',
-                '_'};
+                '_'
+            };
 
             return (cortecs_lexer_test_result_t){
                 .next_char = bad_suffix[entropy],
@@ -538,7 +545,8 @@ cortecs_lexer_test_config_t cortecs_lexer_test_bad_int_config = {
 static const char invalid_chars[] = {
     (char)1, (char)2, (char)3, (char)4, (char)5, (char)6, (char)7, (char)8,
     (char)14, (char)15, (char)16, (char)17, (char)18, (char)19, (char)20, (char)21, (char)22,
-    (char)23, (char)24, (char)25, (char)26, (char)27, (char)28, (char)29, (char)30, (char)31};
+    (char)23, (char)24, (char)25, (char)26, (char)27, (char)28, (char)29, (char)30, (char)31
+};
 #define NUM_INVALID_CHARS (sizeof(invalid_chars) / sizeof(char))
 
 static uint32_t lexer_test_invalid_max_entropy(uint32_t state) {

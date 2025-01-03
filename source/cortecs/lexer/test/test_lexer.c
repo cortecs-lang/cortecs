@@ -261,7 +261,7 @@ static void lexer_test_tag_string(void) {
     assert_tag_equals("unknown", (cortecs_lexer_tag_t)-1);
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(lexer_test_tag_string);
@@ -309,7 +309,7 @@ int main() {
     return UNITY_END();
 }
 
-void setUp() {
+void setUp(void) {
     srand(time(NULL));
     cortecs_world_init();
     cortecs_finalizer_init();
@@ -317,7 +317,7 @@ void setUp() {
     ecs_defer_begin(world);
 }
 
-void tearDown() {
+void tearDown(void) {
     ecs_defer_end(world);
     cortecs_world_cleanup();
 }

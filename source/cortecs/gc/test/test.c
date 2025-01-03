@@ -342,7 +342,7 @@ static void test_inc_dec_null(void) {
     cortecs_world_cleanup();
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_inc_dec_null);
@@ -364,10 +364,10 @@ int main() {
     return UNITY_END();
 }
 
-void setUp() {
+void setUp(void) {
     srand(time(NULL));
 }
 
-void tearDown() {
+void tearDown(void) {
     // required for unity
 }

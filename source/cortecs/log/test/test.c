@@ -98,7 +98,7 @@ void test_write_two_messages(void) {
     cortecs_world_cleanup();
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
 
     RUN_TEST(test_open_log);
@@ -108,9 +108,9 @@ int main() {
     return UNITY_END();
 }
 
-void setUp() {
+void setUp(void) {
 }
 
-void tearDown() {
+void tearDown(void) {
     // required for unity
 }

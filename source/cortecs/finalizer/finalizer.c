@@ -11,7 +11,7 @@ static uint32_t next_type_index;
 
 cortecs_finalizer_define(uint32_t);
 
-void cortecs_finalizer_init() {
+void cortecs_finalizer_init(void) {
     next_type_index = 1;
 }
 
