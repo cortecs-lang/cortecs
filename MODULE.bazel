@@ -33,7 +33,7 @@ git_override(
 # clangd hardcodes where to search for the headers relative to itself.
 # To fix, you need to tell vscode's clangd extension to use the
 # clangd from the toolchain and not the system. Should be hereish:
-# $(pwd)/external/+_repo_rules2+clang-linux-x86_64/bin/clangd
+# echo $(pwd)/external/+_repo_rules2+clang-linux-x86_64/bin/clangd
 bazel_dep(name = "hedron_compile_commands", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
