@@ -34,21 +34,21 @@ static void test_string_equals(void) {
     test_equality("foo", "foobar", false);
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_copy_cstring);
     RUN_TEST(test_string_equals);
     return UNITY_END();
 }
 
-void setUp() {
+void setUp(void) {
     cortecs_world_init();
     cortecs_finalizer_init();
     cortecs_gc_init(NULL);
     ecs_defer_begin(world);
 }
 
-void tearDown() {
+void tearDown(void) {
     ecs_defer_end(world);
     cortecs_world_cleanup();
 }

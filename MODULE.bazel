@@ -1,16 +1,10 @@
 "Contains code related to the Cortecs programming language"
 module(name = "cortecs")
 
+bazel_dep(name = "platforms", version = "0.0.10")
 bazel_dep(name = "rules_cc", version = "0.1.0")
+bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "googletest", version = "1.15.2")
-
-bazel_dep(name = "toolchains_llvm", version = "1.2.0")
-llvm = use_extension("@toolchains_llvm//toolchain/extensions:llvm.bzl", "llvm")
-llvm.toolchain(
-    llvm_version = "19.1.0",
-)
-use_repo(llvm, "llvm_toolchain")
-register_toolchains("@llvm_toolchain//:all")
 
 bazel_dep(name = "flecs", version = "0.0.0")
 git_override(
@@ -30,10 +24,16 @@ git_override(
 # ./bazelw build //...
 # ./bazelw run @hedron_compile_commands//:refresh_all
 # Sometimes helpful to clear the bazel cache:
-# bazel clean
+# ./bazelw clean --expunge
 # rm -r $(./bazelw info repository_cache)
 # To have renovate update this dependency, this must have a version even though
 # it's not declared in the hedron_compile_commands MODULE.bazel
+
+# If you get errors with clangd not able to find system headers,
+# clangd hardcodes where to search for the headers relative to itself.
+# To fix, you need to tell vscode's clangd extension to use the
+# clangd from the toolchain and not the system. Should be hereish:
+# $(pwd)/external/+_repo_rules2+clang-linux-x86_64/bin/clangd
 bazel_dep(name = "hedron_compile_commands", version = "0.0.0", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
@@ -96,4 +96,35 @@ cc_library(
     visibility = ["//visibility:public"],
 )
 """,
+)
+
+http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+http_archive(
+    name = "clang-linux-x86_64",
+    build_file = "//toolchain:clang.BUILD",
+    sha256 = "9042f89df9c13a2bf28e16ce34dfe22934b59b5d8390e94b030bb378bdb3c898",
+    type = "zip",
+    url = "https://chrome-infra-packages.appspot.com/dl/fuchsia/third_party/clang/linux-amd64/+/git_revision:0cfd03ac0d3f9713090a581bda07584754c73a49",
+)
+
+http_archive(
+    name = "clang-linux-aarch64",
+    build_file = "//toolchain:clang.BUILD",
+    sha256 = "61abb915821190baddafa973c69a9db9acda5a16ed3a89489ea2b3b030a2330b",
+    type = "zip",
+    url = "https://chrome-infra-packages.appspot.com/dl/fuchsia/third_party/clang/linux-arm64/+/git_revision:0cfd03ac0d3f9713090a581bda07584754c73a49",
+)
+
+http_archive(
+    name = "linux_sysroot",
+    build_file = "//toolchain:linux_sysroot.BUILD",
+    sha256 = "f45ca0d8b46810b94d2a7dbc65f9092337d6a9568b260b51173a5ab9314da25e",
+    type = "zip",
+    url = "https://chrome-infra-packages.appspot.com/dl/fuchsia/third_party/sysroot/bionic/+/git_revision:702eb9654703a7cec1cadf93a7e3aa269d053943",
+)
+
+register_toolchains(
+    "//toolchain:host_cc_toolchain",
+    dev_dependency = True,
 )

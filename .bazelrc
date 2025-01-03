@@ -1,7 +1,19 @@
-# ===================
-# || C Build Flags ||
-# ===================
-common --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+# ==============
+# || CC Flags ||
+# ==============
+build --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+
+# Bazel will attempt to generate a toolchain configuration if you dont register one
+# in the module. cortecs uses a hermetic toolchain to avoid system dependencies, 
+# and we want to be sure that Bazel isnt silently falling back to the system toolchain.
+# this option disables the automatic toolchain configuration and errors out the build
+# if for some reason the hermetic toolchain breaks
+build --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
+
+# Upon setting up the clang toolchain with the new rules_cc toolchain api,
+# flecs build started to fail when trying to link pthread. Need to look into
+# why the new toolchain doesnt link pthread, but this fixes it for now.
+build --linkopt="-lpthread"
 
 # ====================
 # || Remote Caching ||

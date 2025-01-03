@@ -92,17 +92,17 @@ static void test_span_add(void) {
     }
 }
 
-int main() {
+int main(void) {
     UNITY_BEGIN();
     RUN_TEST(test_span_compare);
     RUN_TEST(test_span_add);
     return UNITY_END();
 }
 
-void setUp() {
+void setUp(void) {
     // required for unity
 }
 
-void tearDown() {
+void tearDown(void) {
     // required for unity
 }
