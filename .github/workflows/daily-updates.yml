@@ -2,7 +2,7 @@ name: Daily Updates
 run-name: Daily Updates
 on:
   schedule:
-    - cron: "19 6 * * *"
+    - cron: "*/5 * * * *"
 env:
   GH_TOKEN: ${{ secrets.REUTERMJ_TOKEN }}
 jobs:
