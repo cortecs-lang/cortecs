@@ -4,4 +4,4 @@
 
 #include <cortecs/mangle.h>
 
-typedef struct CN(Cortecs, Array, CT(TYPE_PARAM_T)) * CN(Cortecs, Array, CT(TYPE_PARAM_T));
+typedef struct CN(_impl, Cortecs, Array, CT(TYPE_PARAM_T)) * CN(Cortecs, Array, CT(TYPE_PARAM_T));

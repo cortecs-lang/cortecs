@@ -123,8 +123,7 @@
 //     return cJSON_IsArray(field);
 // }
 
-// something is complaining about these being unused. They'll be used at some point
-// static cortecs_lsp_parse_error_t expect_array(const cJSON *field) {
+// something is complaining about these being unused.They'll be used at some point static cortecs_lsp_parse_error_t expect_array(const cJSON *field) {
 //     if (is_array(field)) {
 //         return CORTECS_LSP_SUCCESS;
 //     }

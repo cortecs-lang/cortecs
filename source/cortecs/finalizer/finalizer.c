@@ -1,4 +1,5 @@
 #include <cortecs/finalizer.h>
+#include <string.h>
 
 // Define registered type info
 // reserved types:
@@ -13,6 +14,7 @@ cortecs_finalizer_define(uint32_t);
 
 void cortecs_finalizer_init(void) {
     next_type_index = 1;
+    memset(registered_types, 0, sizeof(registered_types));
 }
 
 cortecs_finalizer_index cortecs_finalizer_register_impl(cortecs_finalizer_metadata metadata) {

@@ -5,7 +5,7 @@
 #include <cortecs/mangle.h>
 #include <stdint.h>
 
-struct CN(Cortecs, Array, CT(TYPE_PARAM_T)) {
+struct CN(_impl, Cortecs, Array, CT(TYPE_PARAM_T)) {
     uint32_t size;
     TYPE_PARAM_T elements[];
 };
