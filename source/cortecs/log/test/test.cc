@@ -2,16 +2,23 @@
 #include <cortecs/log.h>
 #include <cortecs/string.h>
 #include <cortecs/world.h>
-#include <flecs.h>
-#include <stdlib.h>
-#include <unity.h>
+#include <gtest/gtest.h>
 
-void test_open_log(void) {
-    cortecs_world_init();
-    cortecs_finalizer_init();
-    cortecs_gc_init(NULL);
-    CN(Cortecs, Log, init)();
+class LogBaseFixture : public ::testing::Test {
+   protected:
+    void SetUp() override {
+        cortecs_world_init();
+        cortecs_finalizer_init();
+        CN(Cortecs, Log, init)();
+        cortecs_gc_init(NULL);
+    }
 
+    void TearDown() override {
+        cortecs_world_cleanup();
+    }
+};
+
+TEST_F(LogBaseFixture, TestOpenLog) {
     ecs_defer_begin(world);
 
     CN(Cortecs, String) path = CN(Cortecs, String, new)("./test_open_log.log");
@@ -19,15 +26,13 @@ void test_open_log(void) {
 
     ecs_defer_end(world);
 
-    cortecs_world_cleanup();
+    struct stat buffer;
+    ASSERT_EQ(stat(path.content->elements, &buffer), 0);
+
+    remove(path.content->elements);
 }
 
-void test_write_one_message(void) {
-    cortecs_world_init();
-    cortecs_finalizer_init();
-    cortecs_gc_init(NULL);
-    CN(Cortecs, Log, init)();
-
+TEST_F(LogBaseFixture, TestWriteOneMessage) {
     ecs_defer_begin(world);
 
     CN(Cortecs, String) path = CN(Cortecs, String, new)("./test_write_one_message.log");
@@ -40,27 +45,25 @@ void test_write_one_message(void) {
 
     ecs_defer_end(world);
 
-    // cJSON *hi_there = cJSON_CreateObject();
-    // cJSON_AddStringToObject(hi_there, "message", "hi there");
-    // CN(Cortecs, Log, write)(log_stream, hi_there);
-    // cJSON_Delete(hi_there);
+    FILE *file = fopen(path.content->elements, "r");
+    ASSERT_NE(file, nullptr);
 
-    FILE *file = fopen("./test_write_one_message.log", "r");
     char line[1024];
     fgets(line, sizeof(line), file);
-    cJSON *json = cJSON_Parse(line);
-    cJSON *message = cJSON_GetObjectItem(json, "message");
-    TEST_ASSERT_EQUAL_STRING("hello world", message->valuestring);
+    fclose(file);
 
-    cortecs_world_cleanup();
+    cJSON *json = cJSON_Parse(line);
+    ASSERT_NE(json, nullptr);
+
+    cJSON *message = cJSON_GetObjectItem(json, "message");
+    ASSERT_NE(message, nullptr);
+    ASSERT_STREQ("hello world", message->valuestring);
+
+    cJSON_Delete(json);
+    remove(path.content->elements);
 }
 
-void test_write_two_messages(void) {
-    cortecs_world_init();
-    cortecs_finalizer_init();
-    cortecs_gc_init(NULL);
-    CN(Cortecs, Log, init)();
-
+TEST_F(LogBaseFixture, TestWriteTwoMessages) {
     ecs_defer_begin(world);
 
     CN(Cortecs, String) path = CN(Cortecs, String, new)("./test_write_two_messages.log");
@@ -78,39 +81,27 @@ void test_write_two_messages(void) {
 
     ecs_defer_end(world);
 
-    FILE *file = fopen("./test_write_two_messages.log", "r");
+    FILE *file = fopen(path.content->elements, "r");
+    ASSERT_NE(file, nullptr);
+
     char line[1024];
 
     fgets(line, sizeof(line), file);
-    printf("line %s", line);
     cJSON *hello_world_out = cJSON_Parse(line);
+    ASSERT_NE(hello_world_out, nullptr);
     cJSON *hello_world_message = cJSON_GetObjectItem(hello_world_out, "message");
-    TEST_ASSERT_EQUAL_STRING("hello world", hello_world_message->valuestring);
+    ASSERT_NE(hello_world_message, nullptr);
+    ASSERT_STREQ("hello world", hello_world_message->valuestring);
     cJSON_Delete(hello_world_out);
 
     fgets(line, sizeof(line), file);
-    printf("line %s", line);
     cJSON *hi_there_out = cJSON_Parse(line);
+    ASSERT_NE(hi_there_out, nullptr);
     cJSON *hi_there_message = cJSON_GetObjectItem(hi_there_out, "message");
-    TEST_ASSERT_EQUAL_STRING("hi there", hi_there_message->valuestring);
+    ASSERT_NE(hi_there_message, nullptr);
+    ASSERT_STREQ("hi there", hi_there_message->valuestring);
     cJSON_Delete(hi_there_out);
 
-    cortecs_world_cleanup();
-}
-
-int main(void) {
-    UNITY_BEGIN();
-
-    RUN_TEST(test_open_log);
-    RUN_TEST(test_write_one_message);
-    RUN_TEST(test_write_two_messages);
-
-    return UNITY_END();
-}
-
-void setUp(void) {
-}
-
-void tearDown(void) {
-    // required for unity
+    fclose(file);
+    remove(path.content->elements);
 }

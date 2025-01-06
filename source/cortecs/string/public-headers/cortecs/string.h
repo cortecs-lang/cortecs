@@ -6,6 +6,10 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 // Strings are encoded using utf-8 to support unicode and
 // maintain compatibility with C/OS api that expect ascii encoding.
 
@@ -17,4 +21,7 @@ CN(Cortecs, String) CN(Cortecs, String, new)(const char *format, ...);
 uint32_t CN(Cortecs, String, capacity)(CN(Cortecs, String) str);
 bool CN(Cortecs, String, equals)(CN(Cortecs, String) left, CN(Cortecs, String) right);
 
+#ifdef __cplusplus
+}
+#endif
 #endif
