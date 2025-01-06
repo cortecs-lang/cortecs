@@ -6,6 +6,10 @@ bazel_dep(name = "rules_cc", version = "0.1.0")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "googletest", version = "1.15.2")
 
+# git_override dependencies are auto updated by renovate
+# due to laziness on the renovate side, bazel_dep must have a version
+# it doesn't need to be any particular version,
+# so we use "0.0.0" to indicate the version is overridden by git commit
 bazel_dep(name = "flecs", version = "0.0.0")
 git_override(
     module_name = "flecs",
@@ -57,29 +61,7 @@ git_override(
 # Make sure the 4 attributes are at the top of the declaration/ahead of build_file_content.
 # due to a bit of laziness in the script, the error checking only looks for build_file_content or )
 # to determine end of declaration.
-
-# git_override dependencies are auto updated by renovate
-# due to laziness on the renovate side, bazel_dep must have a version
-# it doesn't need to be any particular version,
-# so we use "0.0.0" to indicate the version is overridden by git commit
 git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
-git_repository(
-    name = "unity",
-    remote = "https://github.com/ThrowTheSwitch/Unity.git",
-    # branch = "master",
-    commit = "cbcd08fa7de711053a3deec6339ee89cad5d2697",
-    build_file_content = """
-cc_library(
-    name = "unity",
-    srcs = glob(["src/*.c"]),
-    hdrs = glob(["src/*.h"]),
-    features = ["treat_warnings_as_errors"],
-    includes = ["src/"],
-    visibility = ["//visibility:public"],
-)
-""",
-)
 
 git_repository(
     name = "cJSON",
