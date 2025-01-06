@@ -6,6 +6,10 @@
 #include <cortecs/string.h>
 #include <stdio.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 typedef struct CN(Cortecs, Log) {
     FILE *log_file;
 } CN(Cortecs, Log);
@@ -17,8 +21,11 @@ typedef struct CN(Cortecs, Log) {
 
 extern cortecs_finalizer_declare(CN(Cortecs, Log));
 
-void CN(Cortecs, Log, init)();
+void CN(Cortecs, Log, init)(void);
 CN(Cortecs, Ptr, CT(CN(Cortecs, Log))) CN(Cortecs, Log, open)(CN(Cortecs, String) path);
 void CN(Cortecs, Log, write)(CN(Cortecs, Ptr, CT(CN(Cortecs, Log))) log_stream, const cJSON *message);
 
+#ifdef __cplusplus
+}
+#endif
 #endif
