@@ -5,6 +5,10 @@
 #include <stdbool.h>
 #include <stdint.h>
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 void cortecs_gc_init_impl(
     const char *log_path,
     const char *file,
@@ -56,15 +60,15 @@ void *cortecs_gc_alloc_array_impl(
     const char *function,
     int line
 );
-#define cortecs_gc_alloc_array(TYPE, SIZE)                       \
-    cortecs_gc_alloc_array_impl(                                 \
-        sizeof(TYPE),                                            \
-        SIZE,                                                    \
-        offsetof(struct CN(Cortecs, Array, CT(TYPE)), elements), \
-                 cortecs_finalizer_index_name(TYPE),             \
-                 __FILE__,                                       \
-                 __func__,                                       \
-                 __LINE__                                        \
+#define cortecs_gc_alloc_array(TYPE, SIZE)                           \
+    cortecs_gc_alloc_array_impl(                                     \
+        sizeof(TYPE),                                                \
+        SIZE,                                                        \
+        offsetof(struct CN(_impl, Cortecs, Array, CT(TYPE)), elements), \
+                 cortecs_finalizer_index_name(TYPE),                 \
+                 __FILE__,                                           \
+                 __func__,                                           \
+                 __LINE__                                            \
         )
 
 void cortecs_gc_inc_impl(
@@ -96,5 +100,9 @@ void cortecs_gc_dec_impl(
     )
 
 bool cortecs_gc_is_alive(void *allocation);
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif

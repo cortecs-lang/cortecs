@@ -26,6 +26,8 @@ jobs:
         with:
           name: ci-build-log
           path: ci.log
+      
+      - run: ./bazelw test //...
 
   # build-linux-clang:
   #   runs-on: ubuntu-latest
