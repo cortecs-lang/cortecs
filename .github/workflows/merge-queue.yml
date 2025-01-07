@@ -20,6 +20,14 @@ on:
   merge_group:
 
 jobs:
+  # Cant run the conventional commits check on merge_group because the merge_group
+  # run doesnt have the PR context. No-op the check here to provide the status check
+  # to the merge queue
+  validate-pr-title:
+    runs-on: ubuntu-latest
+    steps:
+      - run: /bin/true
+
   build-linux-gcc:
     runs-on: ubuntu-latest
     steps:
