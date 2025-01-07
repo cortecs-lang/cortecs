@@ -12,3 +12,4 @@ jobs:
         uses:  ytanikin/pr-conventional-commits@1.4.1
         with:
           task_types: '["feat","fix","docs","test","ci","refactor","perf","chore","revert"]'
+          token: ${{ secrets.CONVENTIONAL_COMMITS_TOKEN }}
