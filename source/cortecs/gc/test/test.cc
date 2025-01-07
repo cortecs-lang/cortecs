@@ -6,10 +6,12 @@
 
 class GcBaseFixture : public ::testing::Test {
    protected:
+    const char *log_path = nullptr;
     void SetUp() override {
         cortecs_world_init();
         cortecs_finalizer_init();
-        cortecs_gc_init(NULL);
+        CN(Cortecs, Log, init)();
+        cortecs_gc_init(log_path);
     }
 
     void TearDown() override {
@@ -275,18 +277,15 @@ TEST_F(GcRecursiveCollectFixture, TestNRecursiveCollect) {
     }
 }
 
-class GcLogFixture : public ::testing::Test {
+class GcLogFixture : public GcBaseFixture {
    protected:
-    const char *log_path = "./test_gc_log_open_close.log";
     void SetUp() override {
-        cortecs_world_init();
-        cortecs_finalizer_init();
-        CN(Cortecs, Log, init)();
-        cortecs_gc_init(log_path);
+        log_path = "./test_gc_log_open_close.log";
+        GcBaseFixture::SetUp();
     }
 
     void TearDown() override {
-        cortecs_world_cleanup();
+        GcBaseFixture::TearDown();
         remove(log_path);
     }
 };
