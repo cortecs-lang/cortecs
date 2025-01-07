@@ -5,5 +5,5 @@
   separateMajorMinor: false,
   dependencyDashboard: true,
   automerge: true,
-  semanticCommits: enabled,
+  semanticCommits: "enabled",
 }
