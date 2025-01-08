@@ -14,7 +14,7 @@ bazel_dep(name = "flecs", version = "0.0.0")
 git_override(
     module_name = "flecs",
     remote = "https://github.com/SanderMertens/flecs.git",
-    commit = "8a1e9abe412eda7cd7f2a7440dac7499ce42cdca",
+    commit = "7a0cb1ed90df55e0fec3c727c489c47ea482fbb3",
 )
 
 bazel_dep(name = "icu4c", version = "0.0.0")
@@ -45,28 +45,10 @@ git_override(
     commit = "4f28899228fb3ad0126897876f147ca15026151e",
 )
 
-# git_repository dependencies are auto updated by a github action that
-# * scans for lines that start with git_repository(
-# * inside it looks for:
-#   * name
-#   * remote
-#   * branch
-#     * this conflicts with commit in git_repository
-#     * this line should be commented out
-#   * commit
-#     * due to a bit of laziness this must come last
-# * checks the remote for the commit at the tip of the branch
-# * if they're different, it submits a new PR for each individual dependency that needs updating
-
-# Make sure the 4 attributes are at the top of the declaration/ahead of build_file_content.
-# due to a bit of laziness in the script, the error checking only looks for build_file_content or )
-# to determine end of declaration.
 git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-
 git_repository(
     name = "cJSON",
     remote = "https://github.com/DaveGamble/cJSON.git",
-    # branch = "master",
     commit = "12c4bf1986c288950a3d06da757109a6aa1ece38",
     build_file_content = """
 cc_library(
@@ -81,7 +63,6 @@ cc_library(
 )
 
 http_archive = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
 http_archive(
     name = "clang-linux-x86_64",
     build_file = "//toolchain:clang.BUILD",
