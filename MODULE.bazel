@@ -17,7 +17,7 @@ git_override(
     commit = "8a1e9abe412eda7cd7f2a7440dac7499ce42cdca",
 )
 
-bazel_dep(name = "icu4c", version = "0.0.0")
+bazel_dep(name = "icu4c")
 git_override(
     module_name = "icu4c",
     remote = "https://github.com/cortecs-lang/icu4c-bazel.git",
@@ -38,7 +38,7 @@ git_override(
 # To fix, you need to tell vscode's clangd extension to use the
 # clangd from the toolchain and not the system. Should be hereish:
 # echo $(pwd)/external/+_repo_rules2+clang-linux-x86_64/bin/clangd
-bazel_dep(name = "hedron_compile_commands", version = "0.0.0", dev_dependency = True)
+bazel_dep(name = "hedron_compile_commands", dev_dependency = True)
 git_override(
     module_name = "hedron_compile_commands",
     remote = "https://github.com/hedronvision/bazel-compile-commands-extractor.git",
