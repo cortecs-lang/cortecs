@@ -1,13 +1,42 @@
-# ==============
-# || CC Flags ||
-# ==============
+# =============
+# || General ||
+# =============
+# Bazel will stop building after encountering the first error.
+# This flag tells Bazel build as much as possible and show as many build errors as possible.
+# https://bazel.build/docs/user-manual#keep-going
+build --keep_going
+
+# Tells Bazel to use host OS specific configues.
+# This is the equivalent to using --config=linux on Linux, --config=windows on Windows, and 
+# --config=macos on Apple.
+# https://bazel.build/reference/command-line-reference#flag--enable_platform_specific_config
+common --enable_platform_specific_config
+
+# ==========
+# || Test ||
+# ==========
+# By default, Bazel hides test output in log files that you have to manually find and open.
+# This prints a combined stdout/stderr output from tests immediately after the test is completed, 
+# ensuring that test output from simultaneous tests are not interleaved with each other.
+# https://bazel.build/docs/user-manual#test-output
+test --test_output=all
+
+# Always download coverage files for tests from the remote cache.
+# This allows for full coverage reports to be generated on the CI without needing to run all tests.
+# https://bazel.build/reference/command-line-reference#flag--experimental_fetch_all_coverage_outputs
+test --experimental_fetch_all_coverage_outputs
+
+# ========
+# || CC ||
+# ========
 build --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
 
 # Bazel will attempt to generate a toolchain configuration if you dont register one
-# in the module. cortecs uses a hermetic toolchain to avoid system dependencies, 
+# in the MODULE.bazel. Cortecs uses a hermetic toolchain to avoid system dependencies, 
 # and we want to be sure that Bazel isnt silently falling back to the system toolchain.
 # this option disables the automatic toolchain configuration and errors out the build
 # if for some reason the hermetic toolchain breaks
+# https://github.com/bazelbuild/bazel/issues/19714
 build --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 
 # Upon setting up the clang toolchain with the new rules_cc toolchain api,
@@ -18,40 +47,36 @@ build --linkopt="-lpthread"
 # ====================
 # || Remote Caching ||
 # ====================
+# Remote caching in Bazel:
+# * reduces build times by reusing build artifacts from previous builds, and
+# * reduces test times by only running tests that have been impacted by changes.
+# Cortecs configures remote the remote cache to be publically readable but only written by the merge queue.
+# While much of this is in the spirit of SLSA hardened builds, publishing provenance is TODO.
+# This allows local builds to use the cache but not pollute it with local artifacts.
+# https://bazel.build/reference/command-line-reference#flag--remote_upload_local_results
+# https://bazel.build/reference/command-line-reference#flag--google_credentials
+common --noremote_upload_local_results
+common:ci --remote_upload_local_results
+common:ci --google_credentials=cache-rw-credentials.json
 
-# Use a remote cache to improve local build times and CI efficiency.
-# The cache is setup to be publicly readable and privately writable.
-# CI is responsible for uploading artifacts to the cache for use in local builds.
+# Google cloud buckets have out of the box support for Bazel remote caching.
+# https://bazel.build/reference/command-line-reference#flag--remote_cache
+common --remote_cache=https://storage.googleapis.com/cortecs-build-cache
+
+# Bazel includes the value of PATH as part of the key for remote cache lookups.
+# Different values of PATH between different systems (ie. CI and local) will cause cache misses.
+# This forces Bazel to use a static value for PATH, and it will not inheret LD_LIBRARY_PATH.
+# https://bazel.build/reference/command-line-reference#flag--incompatible_strict_action_env
+common --incompatible_strict_action_env
 
 # Debugging hints:
 # https://bazel.build/remote/cache-remote#troubleshooting-cache-hits
-# 1) clear the cache
+# 1) clear the remote cache
 # 2) run with `--execution_log_compact_file` on both CI and local build
 #   2.1) CI is configured to upload the log as an artifact and can be downloaded from the workflow run
+#   2.2) https://bazel.build/reference/command-line-reference#flag--execution_log_compact_file
 # 3) use `bazel-bin/src/tools/execlog/parser` to generate a sorted, human readable log
+#   3.1) https://bazel.build/remote/cache-remote#compare-logs
+#   3.2) https://github.com/bazelbuild/bazel/tree/master/src/tools/execlog
 # 4) Compare in vscode with right click `select for compare` then right click the other `compare with selected`
 # 5) Look through the diff to figure out what might be causing cache lookup between the two environments to differ.
-
-# Use a google cloud bucket for remote caching; It's supported out of the box.
-common --remote_cache=https://storage.googleapis.com/cortecs-build-cache
-
-# For local builds, only read the cache; Dont attempt to upload artifacts.
-# This is overridden in CI: --remote_upload_local_results=true --google_credentials=cache-rw-credentials.json
-common --remote_upload_local_results=false
-
-# Bazel remote caching considers the PATH environment variable when determining a remote cache hit.
-# If the PATH variable in the CI run is different from your local PATH variable,
-# your local run will fail to hit the remote cache artifacts uploaded by CI.
-# Set the PATH variable to be consistent across all runs
-common --action_env=PATH=/usr/local/bin:/usr/bin:/bin
-common --test_env=PATH=/usr/local/bin:/usr/bin:/bin
-common --repo_env=PATH=/usr/local/bin:/usr/bin:/bin
-common --host_action_env=PATH=/usr/local/bin:/usr/bin:/bin
-
-# Environment variables can degrade remote caching performance.
-# This only allows a minimal set of environment variables to be passed into the build
-common --incompatible_strict_action_env
-
-# Set behavior globally to avoid impacting remote caching performance. 
-common --spawn_strategy=processwrapper-sandbox
- 
