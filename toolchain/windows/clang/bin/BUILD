@@ -1,5 +1,10 @@
 package(default_visibility = ["//visibility:public"])
 
+# Using cmd_ps caused a super weird bug
+# It was kicking off a new shell for the tar extraction instead of running the process in sync with the genrule execution
+# bazel would check for the existence of the file before the extraction was complete, and then fail the build
+# using cmd_bat doesnt have this issue
+
 # To avoid using git lfs, we compress the clang binaries.
 # Github has incredibly low bandwidth limits for lfs before you have to start paying for it,
 # but there's no bandwith limits for normal checkout.
