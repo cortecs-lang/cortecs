@@ -1,5 +1,12 @@
 package(default_visibility = ["//visibility:public"])
 
+genrule(
+    name = "test_tar",
+    outs = ["hello"],
+    cmd_ps = "tar.exe --help; echo hello > $(@)",
+    tags = ["no-remote-cache"],
+)
+
 # To avoid using git lfs, we compress the clang binaries.
 # Github has incredibly low bandwidth limits for lfs before you have to start paying for it,
 # but there's no bandwith limits for normal checkout.
