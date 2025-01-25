@@ -4,7 +4,7 @@
 # Bazel will stop building after encountering the first error.
 # This flag tells Bazel build as much as possible and show as many build errors as possible.
 # https://bazel.build/docs/user-manual#keep-going
-build --keep_going
+#build --keep_going
 
 # Tells Bazel to use host OS specific configues.
 # This is the equivalent to using --config=linux on Linux, --config=windows on Windows, and 
@@ -31,6 +31,7 @@ test --experimental_fetch_all_coverage_outputs
 # ========
 build --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
 build --copt="-Werror" --copt="-Wall" --copt="-Wextra" --copt="-Wpedantic"
+build --copt="-v" --linkopt="-v"
 
 # this is required for icu4c. There's a lot of deprecated declarations
 build --cxxopt="-Wno-deprecated-declarations"
