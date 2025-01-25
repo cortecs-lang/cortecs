@@ -13,7 +13,7 @@ cc_toolchain(
     ],
     enabled_features = ["@rules_cc//cc/toolchains/args:experimental_replace_legacy_action_config_features"],
     known_features = ["@rules_cc//cc/toolchains/args:experimental_replace_legacy_action_config_features"],
-    tool_map = "//toolchain/linux/clang:all_tools",
+    tool_map = "//toolchain/windows/clang:all_tools",
 )
 
 toolchain(
