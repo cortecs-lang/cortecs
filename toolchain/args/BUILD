@@ -40,15 +40,3 @@ cc_args(
     ],
     visibility = ["//visibility:public"],
 )
-
-cc_args(
-    name = "link-directories",
-    actions = [
-        "@rules_cc//cc/toolchains/actions:link_actions",
-    ],
-    args = [
-        "-Ltoolchain/linux/clang/lib/x86_64-unknown-linux-gnu",
-        "-Ltoolchain/linux/clang/lib/clang/19/lib/x86_64-unknown-linux-gnu",
-    ],
-    visibility = ["//visibility:public"],
-)
