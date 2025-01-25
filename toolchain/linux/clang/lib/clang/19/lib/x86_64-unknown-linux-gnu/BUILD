@@ -74,5 +74,6 @@ genrule(
         "liborc_rt.a",
     ],
     cmd = "tar xf $(location libclang.tar.gz) -C $(@D)",
+    tags = ["no-remote-cache"],
     visibility = ["//visibility:public"],
 )
