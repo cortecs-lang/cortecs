@@ -25,55 +25,55 @@ cc_tool_map(
 
 cc_tool(
     name = "clang-tool",
-    src = ":bin/clang",
+    src = "//toolchain/linux/clang/bin:clang",
     data = [
-        ":bin/llvm",
         ":builtin_headers",
+        "//toolchain/linux/clang/bin:llvm",
     ],
 )
 
 cc_tool(
     name = "clang++-tool",
-    src = ":bin/clang++",
+    src = "//toolchain/linux/clang/bin:clang++",
     data = [
-        ":bin/llvm",
         ":builtin_headers",
+        "//toolchain/linux/clang/bin:llvm",
     ],
 )
 
 cc_tool(
     name = "lld-tool",
-    src = ":bin/clang++",
+    src = "//toolchain/linux/clang/bin:clang++",
     data = [
-        ":bin/llvm",
         ":builtin_headers",
-        ":linker-files",
+        "//toolchain/linux/clang/bin:linker-files",
+        "//toolchain/linux/clang/bin:llvm",
         "//toolchain/linux/clang/lib/clang/19/lib/x86_64-unknown-linux-gnu:extract_lib",
     ],
 )
 
 cc_tool(
     name = "llvm-ar-tool",
-    src = ":bin/llvm-ar",
-    data = [":bin/llvm"],
+    src = "//toolchain/linux/clang/bin:llvm-ar",
+    data = ["//toolchain/linux/clang/bin:llvm"],
 )
 
 cc_tool(
     name = "llvm-objcopy-tool",
-    src = ":bin/llvm-objcopy",
-    data = [":bin/llvm"],
+    src = "//toolchain/linux/clang/bin:llvm-objcopy",
+    data = ["//toolchain/linux/clang/bin:llvm"],
 )
 
 cc_tool(
     name = "llvm-objdump-tool",
-    src = ":bin/llvm-objdump",
-    data = [":bin/llvm"],
+    src = "//toolchain/linux/clang/bin:llvm-objdump",
+    data = ["//toolchain/linux/clang/bin:llvm"],
 )
 
 cc_tool(
     name = "llvm-strip-tool",
-    src = ":bin/llvm-strip",
-    data = [":bin/llvm"],
+    src = "//toolchain/linux/clang/bin:llvm-strip",
+    data = ["//toolchain/linux/clang/bin:llvm"],
 )
 
 # Directory-based rules in this toolchain only referece things in
@@ -111,115 +111,4 @@ filegroup(
         ":include-x86_64-unknown-linux-gnu-c++-v1",
         ":lib-clang-include",
     ],
-)
-
-genrule(
-    name = "link_clang",
-    srcs = [
-        ":bin/llvm",
-        ":builtin_headers",
-    ],
-    outs = ["bin/clang"],
-    cmd = "ln -s llvm $(@D)/clang",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_clang++",
-    srcs = [
-        ":bin/llvm",
-        ":builtin_headers",
-    ],
-    outs = ["bin/clang++"],
-    cmd = "ln -s llvm $(@D)/clang++",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_ld_lld",
-    srcs = [":bin/llvm"],
-    outs = ["bin/ld.lld"],
-    cmd = "ln -s llvm $(@D)/ld.lld",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_ld64_lld",
-    srcs = [":bin/llvm"],
-    outs = ["bin/ld64.lld"],
-    cmd = "ln -s llvm $(@D)/ld64.lld",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_lld",
-    srcs = [":bin/llvm"],
-    outs = ["bin/lld"],
-    cmd = "ln -s llvm $(@D)/lld",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_lld-link",
-    srcs = [":bin/llvm"],
-    outs = ["bin/lld-link"],
-    cmd = "ln -s llvm $(@D)/lld-link",
-    tags = ["no-remote-cache"],
-)
-
-filegroup(
-    name = "linker-files",
-    srcs = [
-        ":bin/ld.lld",
-        ":bin/ld64.lld",
-        ":bin/lld",
-        ":bin/lld-link",
-    ],
-)
-
-genrule(
-    name = "link_llvm-ar",
-    srcs = [":bin/llvm"],
-    outs = ["bin/llvm-ar"],
-    cmd = "ln -s llvm $(@D)/llvm-ar",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_llvm-objcopy",
-    srcs = [":bin/llvm"],
-    outs = ["bin/llvm-objcopy"],
-    cmd = "ln -s llvm $(@D)/llvm-objcopy",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_llvm-objdump",
-    srcs = [":bin/llvm"],
-    outs = ["bin/llvm-objdump"],
-    cmd = "ln -s llvm $(@D)/llvm-objdump",
-    tags = ["no-remote-cache"],
-)
-
-genrule(
-    name = "link_llvm-strip",
-    srcs = [":bin/llvm"],
-    outs = ["bin/llvm-strip"],
-    cmd = "ln -s llvm $(@D)/llvm-strip",
-    tags = ["no-remote-cache"],
-)
-
-# this distribution of clang is just a bunch of symlinks to the llvm binary
-# but you need to keep the symlinks because llvm uses the name of the binary
-# to decide what to do.
-
-# To avoid using git lfs, we tar up the llvm binary.
-# Github has incredibly low bandwidth limits for lfs before you have to start paying for it,
-# but there's no bandwith limits for normal checkout.
-genrule(
-    name = "extract_llvm",
-    srcs = ["bin/llvm.tar.gz"],
-    outs = ["bin/llvm"],
-    cmd = "tar xf $(location bin/llvm.tar.gz) -C $(@D)",
-    tags = ["no-remote-cache"],
 )
