@@ -21,7 +21,7 @@ genrule(
         "clang_rt.fuzzer_interceptors.lib",
         "clang_rt.stats.lib",
     ],
-    cmd_ps = "tar.exe xvf $(location libclang.tar.gz) -C $(@D)",
+    cmd_ps = "tar.exe xvf $(location libclang.tar.gz) -C $(@D); sleep 5",
     tags = ["no-remote-cache"],
     visibility = ["//visibility:public"],
 )
