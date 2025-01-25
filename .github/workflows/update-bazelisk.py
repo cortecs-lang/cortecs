@@ -24,7 +24,7 @@ assert latest.split()[1] == "Latest", "Failed to sanity check the release line. 
 latest_tag = latest.split()[2] 
 print("Latest release:", latest_tag)
 
-with open('tools/bazelisk-version', 'r') as file:
+with open('.bazelw/bazelisk-version', 'r') as file:
     current_version = file.read().strip()
 
 print("Current bazelisk version:", current_version)
@@ -35,7 +35,7 @@ if current_version == latest_tag:
 
 download_command = ["gh", "release", "download", latest_tag, "--clobber"]
 download_command.extend(["--repo", "https://github.com/bazelbuild/bazelisk"])
-download_command.extend(["--dir", "tools"])
+download_command.extend(["--dir", ".bazelw"])
 download_command.extend(["-p", "bazelisk-linux-*"])
 download_command.extend(["-p", "bazelisk-darwin-*"])
 download_command.extend(["-p", "bazelisk-windows-*"])
@@ -47,7 +47,7 @@ if download_output.returncode != 0:
     print("Failed to download bazelisk releases")
     exit(1)
 
-with open('tools/bazelisk-version', 'w') as file:
+with open('.bazelw/bazelisk-version', 'w') as file:
     file.write(latest_tag)
 
 # Get most recent commit
@@ -59,10 +59,10 @@ new_branch = repo.create_head("update-bazelisk", main.commit)
 new_branch.checkout()
 
 # create the new commit for the bazelisk update
-message = "Updating bazelisk"
+message = "chore(deps): Updating bazelisk to {}".format(latest_tag)
 print("creating commit:", message)
 index = repo.index
-index.add(["tools/*"])
+index.add([".bazelw/*"])
 index.commit(message)
 
 # push to new branch

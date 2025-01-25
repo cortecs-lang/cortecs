@@ -17,7 +17,7 @@ if "%ARCH%"=="32-bit" (
 
 :: Construct the path to the Bazelisk binary
 set OS=windows
-set BAZELISK_BINARY=tools\bazelisk-%OS%-%ARCH%.exe
+set BAZELISK_BINARY=.bazelw\bazelisk-%OS%-%ARCH%.exe
 
 :: Check if the binary exists
 if not exist "%BAZELISK_BINARY%" (
