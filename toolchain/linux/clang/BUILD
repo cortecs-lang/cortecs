@@ -121,6 +121,7 @@ genrule(
     ],
     outs = ["bin/clang"],
     cmd = "ln -s llvm $(@D)/clang",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -131,6 +132,7 @@ genrule(
     ],
     outs = ["bin/clang++"],
     cmd = "ln -s llvm $(@D)/clang++",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -138,6 +140,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/ld.lld"],
     cmd = "ln -s llvm $(@D)/ld.lld",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -145,6 +148,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/ld64.lld"],
     cmd = "ln -s llvm $(@D)/ld64.lld",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -152,6 +156,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/lld"],
     cmd = "ln -s llvm $(@D)/lld",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -159,6 +164,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/lld-link"],
     cmd = "ln -s llvm $(@D)/lld-link",
+    tags = ["no-remote-cache"],
 )
 
 filegroup(
@@ -176,6 +182,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/llvm-ar"],
     cmd = "ln -s llvm $(@D)/llvm-ar",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -183,6 +190,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/llvm-objcopy"],
     cmd = "ln -s llvm $(@D)/llvm-objcopy",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -190,6 +198,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/llvm-objdump"],
     cmd = "ln -s llvm $(@D)/llvm-objdump",
+    tags = ["no-remote-cache"],
 )
 
 genrule(
@@ -197,6 +206,7 @@ genrule(
     srcs = [":bin/llvm"],
     outs = ["bin/llvm-strip"],
     cmd = "ln -s llvm $(@D)/llvm-strip",
+    tags = ["no-remote-cache"],
 )
 
 # this distribution of clang is just a bunch of symlinks to the llvm binary
@@ -211,4 +221,5 @@ genrule(
     srcs = ["bin/llvm.tar.gz"],
     outs = ["bin/llvm"],
     cmd = "tar xf $(location bin/llvm.tar.gz) -C $(@D)",
+    tags = ["no-remote-cache"],
 )
