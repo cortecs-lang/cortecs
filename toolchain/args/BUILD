@@ -30,13 +30,13 @@ cc_args(
     ],
     args = [
         "-isystem",
-        "toolchain/linux/clang/include/c++/v1",
+        "toolchain/windows/clang/include/c++/v1",
         "-isystem",
-        "toolchain/linux/clang/include/x86_64-unknown-linux-gnu/c++/v1",
+        "toolchain/windows/clang/include/x86_64-pc-windows-msvc/c++/v1",
         "-isystem",
-        "toolchain/linux/clang/include",
+        "toolchain/windows/clang/include",
         "-isystem",
-        "toolchain/linux/clang/lib/clang/19/include",
+        "toolchain/windows/clang/lib/clang/19/include",
     ],
     visibility = ["//visibility:public"],
 )

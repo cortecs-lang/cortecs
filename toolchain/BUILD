@@ -1,9 +1,13 @@
 load("@rules_cc//cc/toolchains:toolchain.bzl", "cc_toolchain")
 
+# currently just pulling toolchain artifacts from:
+# * https://chrome-infra-packages.appspot.com/p/fuchsia/third_party/clang
+# * https://chrome-infra-packages.appspot.com/p/fuchsia/third_party/sysroot
+
 cc_toolchain(
     name = "host_clang",
     args = [
-        "//toolchain/args:linux_sysroot",
+        #"//toolchain/args:linux_sysroot",
         "//toolchain/args:no_canonical_prefixes",
         "//toolchain/args:isystem",
     ],
