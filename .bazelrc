@@ -29,7 +29,11 @@ test --experimental_fetch_all_coverage_outputs
 # ========
 # || CC ||
 # ========
-build --copt="-Wall" --copt="-Wextra" --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+build --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
+build --copt="-Werror" --copt="-Wall" --copt="-Wextra" --copt="-Wpedantic"
+
+# this is required for icu4c. There's a lot of deprecated declarations
+build --cxxopt="-Wno-deprecated-declarations"
 
 # Bazel will attempt to generate a toolchain configuration if you dont register one
 # in the MODULE.bazel. Cortecs uses a hermetic toolchain to avoid system dependencies, 
