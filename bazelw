@@ -31,7 +31,7 @@ case "$ARCH" in
 esac
 
 # Construct the path to the Bazelisk binary
-BAZELISK_BINARY="tools/bazelisk-${OS}-${ARCH}"
+BAZELISK_BINARY=".bazelw/bazelisk-${OS}-${ARCH}"
 
 # Check if the binary exists
 if [ ! -x "$BAZELISK_BINARY" ]; then
