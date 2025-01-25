@@ -1,0 +1,582 @@
+[
+  {
+    "cflags": [],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/dd/d1d6faf566a18cc7f316c6babc31d1e111de3a.sym",
+        "debug": "debug/.build-id/dd/d1d6faf566a18cc7f316c6babc31d1e111de3a.debug",
+        "dist": "aarch64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/2e/95d60da3b17d1fba96a60d3cf1e238f72da2c6.sym",
+        "debug": "debug/.build-id/2e/95d60da3b17d1fba96a60d3cf1e238f72da2c6.debug",
+        "dist": "aarch64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/9e/e7b91c6cb85b59827a312888e3a85761a0d5d8.sym",
+        "debug": "debug/.build-id/9e/e7b91c6cb85b59827a312888e3a85761a0d5d8.debug",
+        "dist": "aarch64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/22/f8603b65f9ffeefc07a474e6ff7e80db984ce5.sym",
+        "debug": "debug/.build-id/22/f8603b65f9ffeefc07a474e6ff7e80db984ce5.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      },
+      {
+        "breakpad": "debug/.build-id/96/26db1a353155f46f65805f03816a64b4f68690.sym",
+        "debug": "debug/.build-id/96/26db1a353155f46f65805f03816a64b4f68690.debug",
+        "dist": "aarch64-unknown-fuchsia/asan/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/2f/d272ecebeefa12def517b5ab2820578b8a3d47.sym",
+        "debug": "debug/.build-id/2f/d272ecebeefa12def517b5ab2820578b8a3d47.debug",
+        "dist": "aarch64-unknown-fuchsia/asan/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/c1/9f8a96973afcc1b7c3c6c6cee1d97b80877205.sym",
+        "debug": "debug/.build-id/c1/9f8a96973afcc1b7c3c6c6cee1d97b80877205.debug",
+        "dist": "aarch64-unknown-fuchsia/asan/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/96/e56981f36b62b597995ab9c38743ba84f9e3b1.sym",
+        "debug": "debug/.build-id/96/e56981f36b62b597995ab9c38743ba84f9e3b1.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      },
+      {
+        "breakpad": "debug/.build-id/dd/d1d6faf566a18cc7f316c6babc31d1e111de3a.sym",
+        "debug": "debug/.build-id/dd/d1d6faf566a18cc7f316c6babc31d1e111de3a.debug",
+        "dist": "aarch64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/2e/95d60da3b17d1fba96a60d3cf1e238f72da2c6.sym",
+        "debug": "debug/.build-id/2e/95d60da3b17d1fba96a60d3cf1e238f72da2c6.debug",
+        "dist": "aarch64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/9e/e7b91c6cb85b59827a312888e3a85761a0d5d8.sym",
+        "debug": "debug/.build-id/9e/e7b91c6cb85b59827a312888e3a85761a0d5d8.debug",
+        "dist": "aarch64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=hwaddress"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/2b/694c3fff705353d85071118c9153c9955dd35e.sym",
+        "debug": "debug/.build-id/2b/694c3fff705353d85071118c9153c9955dd35e.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.hwasan.so",
+        "soname": "libclang_rt.hwasan.so"
+      },
+      {
+        "breakpad": "debug/.build-id/3a/9e9903a10cf0be99c3c8e7c933580a6e83406a.sym",
+        "debug": "debug/.build-id/3a/9e9903a10cf0be99c3c8e7c933580a6e83406a.debug",
+        "dist": "aarch64-unknown-fuchsia/hwasan/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/86/4d9a88d2ebffed7442660f8aba96f231b89cd7.sym",
+        "debug": "debug/.build-id/86/4d9a88d2ebffed7442660f8aba96f231b89cd7.debug",
+        "dist": "aarch64-unknown-fuchsia/hwasan/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/ee/bba24b1c43381b5db58914617fe26b87d67e95.sym",
+        "debug": "debug/.build-id/ee/bba24b1c43381b5db58914617fe26b87d67e95.debug",
+        "dist": "aarch64-unknown-fuchsia/hwasan/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/22/f8603b65f9ffeefc07a474e6ff7e80db984ce5.sym",
+        "debug": "debug/.build-id/22/f8603b65f9ffeefc07a474e6ff7e80db984ce5.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/96/e56981f36b62b597995ab9c38743ba84f9e3b1.sym",
+        "debug": "debug/.build-id/96/e56981f36b62b597995ab9c38743ba84f9e3b1.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=hwaddress"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/2b/694c3fff705353d85071118c9153c9955dd35e.sym",
+        "debug": "debug/.build-id/2b/694c3fff705353d85071118c9153c9955dd35e.debug",
+        "dist": "clang/19/lib/aarch64-unknown-fuchsia/libclang_rt.hwasan.so",
+        "soname": "libclang_rt.hwasan.so"
+      }
+    ],
+    "target": [
+      "aarch64-unknown-fuchsia",
+      "aarch64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [],
+    "ldflags": [],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/b4/631ed3a13962612815f1dcda497305155e8f3b.debug",
+        "dist": "riscv64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "debug": "debug/.build-id/e1/b79bed271dc069afa9b3e073b4c138901b1237.debug",
+        "dist": "riscv64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "debug": "debug/.build-id/f8/bcc2e374b8fab4e308636327c9593d37cdbc99.debug",
+        "dist": "riscv64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/c8/81b03301096c52ab0d79fe5151beb6bfbb4533.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      },
+      {
+        "debug": "debug/.build-id/75/881bd908c59dc09ed56897d09b997e38e8bf86.debug",
+        "dist": "riscv64-unknown-fuchsia/asan/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "debug": "debug/.build-id/47/37ec1303a93fc4e1564390f46945003a3fdc51.debug",
+        "dist": "riscv64-unknown-fuchsia/asan/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "debug": "debug/.build-id/e9/00919556c2104f042a06380518ce0e2097f32c.debug",
+        "dist": "riscv64-unknown-fuchsia/asan/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/9e/5cdeb66cc7c770be0f402856e1a6910f2aa6a6.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      },
+      {
+        "debug": "debug/.build-id/b4/631ed3a13962612815f1dcda497305155e8f3b.debug",
+        "dist": "riscv64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "debug": "debug/.build-id/e1/b79bed271dc069afa9b3e073b4c138901b1237.debug",
+        "dist": "riscv64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "debug": "debug/.build-id/f8/bcc2e374b8fab4e308636327c9593d37cdbc99.debug",
+        "dist": "riscv64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=hwaddress"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/42/d10425370bfea8c0ff9576ca4d929c619c9d5a.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.hwasan.so",
+        "soname": "libclang_rt.hwasan.so"
+      },
+      {
+        "debug": "debug/.build-id/b4/631ed3a13962612815f1dcda497305155e8f3b.debug",
+        "dist": "riscv64-unknown-fuchsia/hwasan/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "debug": "debug/.build-id/e1/b79bed271dc069afa9b3e073b4c138901b1237.debug",
+        "dist": "riscv64-unknown-fuchsia/hwasan/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "debug": "debug/.build-id/43/6f8d2a06224c1f006587f34432357caa51696d.debug",
+        "dist": "riscv64-unknown-fuchsia/hwasan/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/c8/81b03301096c52ab0d79fe5151beb6bfbb4533.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/9e/5cdeb66cc7c770be0f402856e1a6910f2aa6a6.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=hwaddress"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "debug": "debug/.build-id/42/d10425370bfea8c0ff9576ca4d929c619c9d5a.debug",
+        "dist": "clang/19/lib/riscv64-unknown-fuchsia/libclang_rt.hwasan.so",
+        "soname": "libclang_rt.hwasan.so"
+      }
+    ],
+    "target": [
+      "riscv64-unknown-fuchsia",
+      "riscv64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/8b/29eeb0a3557580272aabbb5f00c5ed642a6fc4.sym",
+        "debug": "debug/.build-id/8b/29eeb0a3557580272aabbb5f00c5ed642a6fc4.debug",
+        "dist": "x86_64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/d6/d01e94522f1f73a3dbdae43f0560aed589cd8c.sym",
+        "debug": "debug/.build-id/d6/d01e94522f1f73a3dbdae43f0560aed589cd8c.debug",
+        "dist": "x86_64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/e3/e82adfef516608edd00af50966a84cc0fa2a4a.sym",
+        "debug": "debug/.build-id/e3/e82adfef516608edd00af50966a84cc0fa2a4a.debug",
+        "dist": "x86_64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/33/880eed954afa9ba4a2f00c2087c4d1f30f9435.sym",
+        "debug": "debug/.build-id/33/880eed954afa9ba4a2f00c2087c4d1f30f9435.debug",
+        "dist": "clang/19/lib/x86_64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      },
+      {
+        "breakpad": "debug/.build-id/b6/70d0f5e3b99d2e9f9db6b7406cfc91a27f0ef8.sym",
+        "debug": "debug/.build-id/b6/70d0f5e3b99d2e9f9db6b7406cfc91a27f0ef8.debug",
+        "dist": "x86_64-unknown-fuchsia/asan/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/eb/5fd0ec0d5174ae35e057505aab5f3a8d8d5593.sym",
+        "debug": "debug/.build-id/eb/5fd0ec0d5174ae35e057505aab5f3a8d8d5593.debug",
+        "dist": "x86_64-unknown-fuchsia/asan/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/84/440b0034f796307203e7119b38830aeeaba335.sym",
+        "debug": "debug/.build-id/84/440b0034f796307203e7119b38830aeeaba335.debug",
+        "dist": "x86_64-unknown-fuchsia/asan/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/c1/2007b548b02518d410a89f92f71199ce45058f.sym",
+        "debug": "debug/.build-id/c1/2007b548b02518d410a89f92f71199ce45058f.debug",
+        "dist": "clang/19/lib/x86_64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      },
+      {
+        "breakpad": "debug/.build-id/8b/29eeb0a3557580272aabbb5f00c5ed642a6fc4.sym",
+        "debug": "debug/.build-id/8b/29eeb0a3557580272aabbb5f00c5ed642a6fc4.debug",
+        "dist": "x86_64-unknown-fuchsia/libc++.so.2",
+        "name": "libc++",
+        "soname": "libc++.so.2"
+      },
+      {
+        "breakpad": "debug/.build-id/d6/d01e94522f1f73a3dbdae43f0560aed589cd8c.sym",
+        "debug": "debug/.build-id/d6/d01e94522f1f73a3dbdae43f0560aed589cd8c.debug",
+        "dist": "x86_64-unknown-fuchsia/libc++abi.so.1",
+        "name": "libc++abi",
+        "soname": "libc++abi.so.1"
+      },
+      {
+        "breakpad": "debug/.build-id/e3/e82adfef516608edd00af50966a84cc0fa2a4a.sym",
+        "debug": "debug/.build-id/e3/e82adfef516608edd00af50966a84cc0fa2a4a.debug",
+        "dist": "x86_64-unknown-fuchsia/libunwind.so.1",
+        "name": "libunwind",
+        "soname": "libunwind.so.1"
+      }
+    ],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=address"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/33/880eed954afa9ba4a2f00c2087c4d1f30f9435.sym",
+        "debug": "debug/.build-id/33/880eed954afa9ba4a2f00c2087c4d1f30f9435.debug",
+        "dist": "clang/19/lib/x86_64-unknown-fuchsia/libclang_rt.asan.so",
+        "soname": "libclang_rt.asan.so"
+      }
+    ],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  },
+  {
+    "cflags": [
+      "-fsanitize=undefined"
+    ],
+    "ldflags": [
+      "-static-libstdc++"
+    ],
+    "runtime": [
+      {
+        "breakpad": "debug/.build-id/c1/2007b548b02518d410a89f92f71199ce45058f.sym",
+        "debug": "debug/.build-id/c1/2007b548b02518d410a89f92f71199ce45058f.debug",
+        "dist": "clang/19/lib/x86_64-unknown-fuchsia/libclang_rt.ubsan_standalone.so",
+        "soname": "libclang_rt.ubsan_standalone.so"
+      }
+    ],
+    "target": [
+      "x86_64-unknown-fuchsia",
+      "x86_64-fuchsia"
+    ]
+  }
+]
