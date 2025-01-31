@@ -571,9 +571,6 @@ void cortecs_gc_cleanup_impl(
 
 bool cortecs_gc_is_alive(void *allocation) {
     // TODO this api should be removed in favor of using logs
-    gc_header header = *(gc_header *)allocation;
-    UNUSED(header);
-
     ecs_entity_t entity = get_entity(allocation);
     return ecs_is_alive(world, entity);
 }
