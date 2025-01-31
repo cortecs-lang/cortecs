@@ -240,10 +240,13 @@ TEST_F(GcSingleTargetFinalizerFixture, TestRecursiveCollectArray) {
 
     ecs_defer_end(world);
 
-    ASSERT_FALSE(cortecs_gc_is_alive(data));
-    for (int i = 0; i < 512; i++) {
-        ASSERT_FALSE(cortecs_gc_is_alive(targets[i]));
-    }
+    // This is a use-after-free error. 
+    // Really need to replace this API with log parsing because it's almost never
+    // good to call it.
+    // ASSERT_FALSE(cortecs_gc_is_alive(data));
+    // for (int i = 0; i < 512; i++) {
+    //     ASSERT_FALSE(cortecs_gc_is_alive(targets[i]));
+    // }
 }
 
 class GcRecursiveCollectFixture : public GcBaseFixture {
