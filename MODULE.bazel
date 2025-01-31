@@ -6,11 +6,7 @@ bazel_dep(name = "rules_cc", version = "0.1.0")
 bazel_dep(name = "bazel_skylib", version = "1.7.1")
 bazel_dep(name = "googletest", version = "1.15.2")
 
-# git_override dependencies are auto updated by renovate
-# due to laziness on the renovate side, bazel_dep must have a version
-# it doesn't need to be any particular version,
-# so we use "0.0.0" to indicate the version is overridden by git commit
-bazel_dep(name = "flecs", version = "0.0.0")
+bazel_dep(name = "flecs")
 git_override(
     module_name = "flecs",
     remote = "https://github.com/SanderMertens/flecs.git",
@@ -30,8 +26,6 @@ git_override(
 # Sometimes helpful to clear the bazel cache:
 # ./bazelw clean --expunge
 # rm -r $(./bazelw info repository_cache)
-# To have renovate update this dependency, this must have a version even though
-# it's not declared in the hedron_compile_commands MODULE.bazel
 
 # If you get errors with clangd not able to find system headers,
 # clangd hardcodes where to search for the headers relative to itself.
