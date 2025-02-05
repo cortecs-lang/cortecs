@@ -10,7 +10,7 @@ bazel_dep(name = "flecs")
 git_override(
     module_name = "flecs",
     remote = "https://github.com/SanderMertens/flecs.git",
-    commit = "d8f09c7d2a75bb5f8b1b6f56ac904e1d2b7bb363",
+    commit = "2fcb2f690c5dcea911b9ffa0b5377064c8cb2dfc",
 )
 
 bazel_dep(name = "icu4c")
