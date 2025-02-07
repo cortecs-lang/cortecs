@@ -56,7 +56,14 @@ cc_library(
 """,
 )
 
+bazel_dep(name = "cortecs-cc-toolchain", dev_dependency = True)
+git_override(
+    module_name = "cortecs-cc-toolchain",
+    remote = "https://github.com/cortecs-lang/cortecs-cc-toolchain.git",
+    commit = "6ca1a853d51ba0f527c0e594ab2d1e5009fbfaaf",
+)
+
 register_toolchains(
-    "//toolchain:host_cc_toolchain",
+    "@cortecs-cc-toolchain//:host_cc_toolchain",
     dev_dependency = True,
 )
