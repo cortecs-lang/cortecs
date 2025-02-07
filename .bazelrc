@@ -43,11 +43,6 @@ build --cxxopt="-Wno-deprecated-declarations"
 # https://github.com/bazelbuild/bazel/issues/19714
 build --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 
-# Upon setting up the clang toolchain with the new rules_cc toolchain api,
-# flecs build started to fail when trying to link pthread. Need to look into
-# why the new toolchain doesnt link pthread, but this fixes it for now.
-build --linkopt="-lpthread"
-
 # ====================
 # || Remote Caching ||
 # ====================
