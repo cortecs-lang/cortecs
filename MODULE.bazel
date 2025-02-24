@@ -60,7 +60,7 @@ bazel_dep(name = "cortecs-cc-toolchain", dev_dependency = True)
 git_override(
     module_name = "cortecs-cc-toolchain",
     remote = "https://github.com/cortecs-lang/cortecs-cc-toolchain.git",
-    commit = "15cebc6763bc407e33fbc112b30199ebf496f45a",
+    commit = "09e13be509330dbc4855a874018b961d4b20a0a7",
 )
 
 register_toolchains(
