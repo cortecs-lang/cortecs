@@ -6,7 +6,7 @@ on:
   pull_request:
 
 jobs:
-  build-linux-gcc:
+  build-linux-clang:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -19,6 +19,20 @@ jobs:
           path: ci.log
       
       - run: ./bazelw test //...
+
+  build-windows-clang:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - run: .\bazelw.bat build --execution_log_compact_file=ci.log //...
+      - uses: actions/upload-artifact@v4
+        with:
+          name: ci-build-log
+          path: ci.log
+      
+      - run: .\bazelw.bat test //...
 
   # build-linux-clang:
   #   runs-on: ubuntu-latest
