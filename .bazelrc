@@ -6,6 +6,11 @@
 # https://bazel.build/docs/user-manual#keep-going
 build --keep_going
 
+# This tells bazel to announce all cli flags used in the build. 
+# It's helpful for debugging platform specific build flags.
+# https://bazel.build/docs/user-manual#announce-rc
+build --announce_rc
+
 # Tells Bazel to use host OS specific configues.
 # This is the equivalent to using --config=linux on Linux, --config=windows on Windows, and 
 # --config=macos on Apple.
@@ -30,10 +35,30 @@ test --experimental_fetch_all_coverage_outputs
 # || CC ||
 # ========
 build --conlyopt="-std=gnu11" --cxxopt="-std=c++17"
-build --copt="-Werror" --copt="-Wall" --copt="-Wextra" --copt="-Wpedantic"
+
+# Why are the same flags repeated for each platform?
+# good question. When I had just `build --copt="-Werror"...` here, it was being added to the
+# cli flags in the wrong order with the platfor specific flags.
+# Essentially the command would be: clang <platform flags> <generic flags> ...
+# The correct order is: clang <generic flags> <platform flags> ...
+# This caused `-Wall` to come after the platform specific `-Wno-...` flags 
+# leading to `-Wall` overriding the disabled warnings causing the build to fail.
+# This is a workaround to ensure the flags are in the correct order.
+build:linux --copt="-Werror" --copt="-Wall" --copt="-Wextra" --copt="-Wpedantic"
+build:windows --copt="-Werror" --copt="-Wall" --copt="-Wextra" --copt="-Wpedantic"
 
 # this is required for icu4c. There's a lot of deprecated declarations
-build --cxxopt="-Wno-deprecated-declarations"
+build:linux --cxxopt="-Wno-deprecated-declarations"
+
+# Currently required for windows builds
+build:windows --linkopt="-lWS2_32"
+build:windows --copt="-Wno-deprecated-declarations"
+build:windows --copt="-Wno-unused-const-variable"
+build:windows --copt="-Wno-language-extension-token"
+build:windows --copt="-Wno-unused-variable"
+
+# clang does not seem to respect the -nostdlib flags unless we specify this env var
+build:windows --action_env=LIB=some/fake/path
 
 # Bazel will attempt to generate a toolchain configuration if you dont register one
 # in the MODULE.bazel. Cortecs uses a hermetic toolchain to avoid system dependencies, 
