@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - run: ./bazelw build --execution_log_compact_file=ci.log //...
       - uses: actions/upload-artifact@v4
