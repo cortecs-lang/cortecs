@@ -32,7 +32,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       # Get the credentials to write the bazel cache from secrets
       - run: 'echo "$GOOGLE_CREDENTIALS" > cache-rw-credentials.json'
