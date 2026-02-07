@@ -43,7 +43,7 @@ git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "g
 git_repository(
     name = "cJSON",
     remote = "https://github.com/DaveGamble/cJSON.git",
-    commit = "c859b25da02955fef659d658b8f324b5cde87be3",
+    commit = "a29814f285cc531c00223743ad3c55cd38c0dc56",
     build_file_content = """
 cc_library(
     name = "cJSON",
